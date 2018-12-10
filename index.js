@@ -13,7 +13,7 @@ var handlers = {
     
     //un altro modo per far parlare alexa, è il costrutto response.speak - response ready
         this.response.speak('Benvenuto a Codeacademy').listen('puoi dire qualcosa del tipo...');
-        this.emit(':responseReady')
+        this.emit(':responseReady');
     },
     "WelcomeIntent": function () {
       this.emit(":tell", "Hello, Codecademy"); // Calls the SayWelcomeMessage handler. This is what Alexa will speak back when the user says "Ask code academy to say hello"
@@ -23,7 +23,7 @@ var handlers = {
   },
     "getUserInput": function () {
         var input;
-        input = this.event.request.sslots.[slot].value;
+        input = this.event.request.slots.[slot].value;
     }
 };
 
