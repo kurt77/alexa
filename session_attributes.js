@@ -40,14 +40,17 @@ var handlers = {
   },
 
   'SetMyLanguageIntent': function() {
+    this.attributes['language'] = this.event.request.intent.slots.languages.value;
 
     if (this.attributes['language'] === 'JavaScript') {
       this.attributes['language'] = 'javascript';
     }
 
+    var language = this.attributes['language'];
+
     this.response
       .speak('Okay, I will ask you some questions about ' +
-        'Ruby' + '. Here is your first question. ' + 
+        language + '. Here is your first question. ' + 
         AskQuestion(this.attributes))
       .listen(AskQuestion(this.attributes));
 
@@ -56,19 +59,24 @@ var handlers = {
 
   // User gives an answer
   'AnswerIntent': function() {
-	var userAnswer = this.event.request.slots.answer.value;		
+    var userAnswer = this.event.request.intent.slots.answer.value;
+    var language = this.attributes['language'];
+    var languageAnswer = language + 'Answer';
+    var currentFlashcardIndex = this.attributes['currentFlashcardIndex'];
+    var correctAnswer = flashcardsDictionary[currentFlashcardIndex][languageAnswer];
+
     if (userAnswer === correctAnswer){
-      this.attributes['currentFlashcardIndex'] ++;
-			this.attributes['numberCorrect'] ++;
-      //this.attributes['currentFlashCardIndex'] ++;
+      this.attributes['numberCorrect']++;
+      var numberCorrect = this.attributes['numberCorrect'];
+      this.attributes['currentFlashcardIndex']++;
       this.response
         .speak('Nice job! The correct answer is ' + correctAnswer + '. You ' +
           'have gotten ' + numberCorrect + ' out of ' + DECK_LENGTH + ' ' +
           language + ' questions correct. Here is your next question. ' + AskQuestion(this.attributes))
         .listen(AskQuestion(this.attributes));
     } else {
-      this.attributes['currentFlashcardIndex'] ++;
-			//this.attributes['currentFlashCardIndex'] ++;
+      var numberCorrect = this.attributes['numberCorrect'];
+      this.attributes['currentFlashcardIndex']++;
       this.response
         .speak('Sorry, the correct answer is ' + correctAnswer + '. You ' +
           'have gotten ' + numberCorrect + ' out of ' + DECK_LENGTH + ' ' +
@@ -97,13 +105,14 @@ var handlers = {
 
 // Test my {language} knowledge
 var AskQuestion = function(attributes) {
+  var language = attributes['language'];
   var currentFlashcardIndex = attributes['currentFlashcardIndex'];
 
   if (currentFlashcardIndex >= flashcardsDictionary.length) {
     return 'No questions remaining';
   } else {
     var currentQuestion = flashcardsDictionary[currentFlashcardIndex].question;
-    return 'In Ruby, ' + currentQuestion;
+    return 'In ' + language + ', ' + currentQuestion;
   }
 };
 
