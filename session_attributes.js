@@ -56,7 +56,7 @@ var handlers = {
 
   // User gives an answer
   'AnswerIntent': function() {
-		
+	var userAnswer = this.event.request.slots.answer.value;		
     if (userAnswer === correctAnswer){
       this.attributes['currentFlashcardIndex'] ++;
 			this.attributes['numberCorrect'] ++;
