@@ -53,13 +53,13 @@ var handlers = {
     //NOTA: nella LaunchRequest inizializzo gli stati
     //this.attributes['language'] = '';
     this.attributes['numberCorrect'] = 0;
-    this.attributes['currentFlashcardIndex'] = 0;
+    this.attributes['questionCounter'] = 0;
+    this.attributes['randomIndex'] = 0;
     
     //esempio di listen con reprompt
     this.response
-        .listen('Welcome to Flashcards. In this session, do you want to test' +
-        ' your knowledge in Ruby, Python, or Javascript?').speak(
-        'Which language would you like to practice?');
+        .listen('Benvenuto a allegra fattoria. Farò il verso di un animale e tu dovrai indovinare quale animale è. Sei pronto?').speak(
+        'Sei pronto a indovinare un animale dal verso?');
     this.emit(':responseReady');
   },
   
@@ -146,15 +146,20 @@ var handlers = {
 
 // Test my {language} knowledge
 //verifico che ci siano delle domande rimanenti. In caso positivo genera un altra domanda
-var AskQuestion = function(attributes) {
-  var language = attributes['language'];
-  var currentFlashcardIndex = attributes['currentFlashcardIndex'];
+var AskQuestion = function() {
+  //var language = attributes['language'];
+  //this.attributes['questionCounter'] = 0;
+  //this.attributes['randomIndex'] = 0;
+  var questionCounter = attributes['questionCounter'];
+  var randomIndex = Math.floor(Math.random() * DECK_LENGTH);
 
-  if (currentFlashcardIndex >= flashcardsDictionary.length) {
-    return 'No questions remaining';
+  if (questionCounter >= DECK_LENGTH) {
+    return 'Mi dispiace, ho finito le domande';
   } else {
-    var currentQuestion = flashcardsDictionary[currentFlashcardIndex].question;
-    return 'In ' + language + ', ' + currentQuestion;
+    //da modificare per fare ritornare un animale random
+    var currentQuestion = flashcardsDictionary[randomIndex].verso;
+    
+    return  currentQuestion;
   }
 };
 
