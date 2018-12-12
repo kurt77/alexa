@@ -101,14 +101,14 @@ var handlers = {
   // verifico la risposta dell utente
   'AnswerIntent': function() {
     //verificare che il nome dello slot corrisponda a quello definito su interaction model
-    var userAnswer = this.event.request.intent.slots.answer.value;
+    var animale = this.event.request.intent.slots.animale.value;
     //var language = this.attributes['language'];
     //var languageAnswer = language + 'Answer';
     //var currentFlashcardIndex = this.attributes['currentFlashcardIndex'];
     var randomIndex = this.attributes['randomIndex'];
     var correctAnswer = flashcardsDictionary[randomIndex]['animale'];
 
-    if (userAnswer === correctAnswer){
+    if (animale === correctAnswer){
       this.attributes['numberCorrect']++;
       var numberCorrect = this.attributes['numberCorrect'];
       //this.attributes['currentFlashcardIndex']++;
