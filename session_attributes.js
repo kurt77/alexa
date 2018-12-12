@@ -2,6 +2,7 @@
 
 var Alexa = require('alexa-sdk');
 
+//nota: struttura dati di tipo dictionary
 var flashcardsDictionary = [
   {
     question: 'How do you find the length of a string?',
@@ -28,10 +29,12 @@ var handlers = {
 
   // Open Codecademy Flashcards
   'LaunchRequest': function() {
+    //NOTA: nella LaunchRequest inizializzo gli stati
     this.attributes['language'] = '';
     this.attributes['numberCorrect'] = 0;
     this.attributes['currentFlashcardIndex'] = 0;
-
+    
+    //esempio di listen con reprompt
     this.response
         .listen('Welcome to Flashcards. In this session, do you want to test' +
         ' your knowledge in Ruby, Python, or Javascript?').speak(
