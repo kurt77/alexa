@@ -24,7 +24,14 @@ var flashcardsDictionary = [
     animale:'cane',
     verso: "<audio src='soundbank://soundlibrary/animals/amzn_sfx_dog_med_bark_2x_02'/>"
   },
-  
+  {
+    animale:'elefante',
+    verso: "<audio src='soundbank://soundlibrary/animals/amzn_sfx_elephant_01'/>"
+  },
+  {
+    animale:'cavallo',
+    verso: "<audio src='soundbank://soundlibrary/animals/amzn_sfx_horse_huff_whinny_01'/>"
+  }
 ];
 
 //var versiAnimali = [
