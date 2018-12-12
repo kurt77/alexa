@@ -41,16 +41,20 @@ var handlers = {
         'Which language would you like to practice?');
     this.emit(':responseReady');
   },
-
+  
+  //imposto il linguaggio e faccio la prima domanda
   'SetMyLanguageIntent': function() {
+    //imposto lo stato language con lo slot languages pronunciato dall'utente
     this.attributes['language'] = this.event.request.intent.slots.languages.value;
 
     if (this.attributes['language'] === 'JavaScript') {
-      this.attributes['language'] = 'javascript';
+      this.attributes['language'] = 'javascript';  //non chiaro
     }
-
+    
+    //assegno alla variabile language lo stato corrente dell'attributo language
     var language = this.attributes['language'];
-
+    
+    //NB: in questa risposta vado a invocare un altro intent passandogli uno stato
     this.response
       .speak('Okay, I will ask you some questions about ' +
         language + '. Here is your first question. ' + 
@@ -61,6 +65,7 @@ var handlers = {
   },
 
   // User gives an answer
+  // verifico la risposta dell utente
   'AnswerIntent': function() {
     var userAnswer = this.event.request.intent.slots.answer.value;
     var language = this.attributes['language'];
@@ -107,6 +112,7 @@ var handlers = {
 };
 
 // Test my {language} knowledge
+//verifico che ci siano delle domande rimanenti. In caso positivo genera un altra domanda
 var AskQuestion = function(attributes) {
   var language = attributes['language'];
   var currentFlashcardIndex = attributes['currentFlashcardIndex'];
