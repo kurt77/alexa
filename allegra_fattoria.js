@@ -5,23 +5,37 @@ var Alexa = require('alexa-sdk');
 //nota: struttura dati di tipo dictionary
 var flashcardsDictionary = [
   {
-    question: 'How do you find the length of a string?',
-    rubyAnswer: 'length',
-    pythonAnswer: 'len',
-    javascriptAnswer: 'length'
+    animale: 'gatto',
+    verso: "<audio src='soundbank://soundlibrary/animals/amzn_sfx_cat_meow_1x_01'/>"
   },
   {
-    question: 'How do you print to the console or terminal?',
-    rubyAnswer: 'puts',
-    pythonAnswer: 'print',
-    javascriptAnswer:'console.log'
+    animale: 'uccello',
+    verso: "<audio src='soundbank://soundlibrary/animals/amzn_sfx_bird_chickadee_chirps_01'/>"
   },
   {
-    question:'Are the boolean terms true and false capitalized or lowercase?',
-    rubyAnswer: 'lowercase',
-    pythonAnswer: 'capitalized',
-    javascriptAnswer: 'lowercase'
-  }];
+    animale:'pollo',
+    verso: "<audio src='soundbank://soundlibrary/animals/amzn_sfx_chicken_cluck_01'/>"
+  },
+  {
+    animale:'corvo',
+    verso: "<audio src='soundbank://soundlibrary/animals/amzn_sfx_chicken_cluck_01'/>"
+  },
+  {
+    animale:'cane',
+    verso: "<audio src='soundbank://soundlibrary/animals/amzn_sfx_dog_med_bark_2x_02'/>"
+  },
+  
+];
+
+//var versiAnimali = [
+//    ["gatto","<audio src='soundbank://soundlibrary/animals/amzn_sfx_cat_meow_1x_01'/>"],
+//    ["uccello","<audio src='soundbank://soundlibrary/animals/amzn_sfx_bird_chickadee_chirps_01'/>"],
+//    ["pollo","<audio src='soundbank://soundlibrary/animals/amzn_sfx_chicken_cluck_01'/>"],
+//    ["corvo","<audio src='soundbank://soundlibrary/animals/amzn_sfx_crow_caw_1x_01'/>"],
+//    ["cane","<audio src='soundbank://soundlibrary/animals/amzn_sfx_dog_med_bark_2x_02'/>"],    
+//    ["elefante","<audio src='soundbank://soundlibrary/animals/amzn_sfx_elephant_01'/>"],
+//    ["cavallo","<audio src='soundbank://soundlibrary/animals/amzn_sfx_horse_huff_whinny_01'/>"]
+//    ];
 
 var DECK_LENGTH = flashcardsDictionary.length;
 
