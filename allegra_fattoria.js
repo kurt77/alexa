@@ -93,7 +93,7 @@ var handlers = {
 
     this.emit(':responseReady');
     
-   } 
+   }, 
   
   
   // User gives an answer
