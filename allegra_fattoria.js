@@ -51,7 +51,7 @@ var handlers = {
   // Open Codecademy Flashcards
   'LaunchRequest': function() {
     //NOTA: nella LaunchRequest inizializzo gli stati
-    this.attributes['language'] = '';
+    //this.attributes['language'] = '';
     this.attributes['numberCorrect'] = 0;
     this.attributes['currentFlashcardIndex'] = 0;
     
@@ -64,6 +64,7 @@ var handlers = {
   },
   
   //imposto il linguaggio e faccio la prima domanda
+  /*
   'SetMyLanguageIntent': function() {
     //imposto lo stato language con lo slot languages pronunciato dall'utente
     this.attributes['language'] = this.event.request.intent.slots.languages.value;
@@ -84,7 +85,18 @@ var handlers = {
 
     this.emit(':responseReady');
   },
+*/
+  
+  //intent invocato quando l'utente dice sono pronto
+  'readyIntent': function(){
+    this.response.speak('Va bene, indovina questo verso ' + AskQuestion()).listen();
 
+    this.emit(':responseReady');
+    
+   } 
+  
+  
+  
   // User gives an answer
   // verifico la risposta dell utente
   'AnswerIntent': function() {
@@ -151,3 +163,11 @@ exports.handler = function(event, context, callback){
   alexa.registerHandlers(handlers);
   alexa.execute();
 };
+
+
+function randomPhrase(myData) {
+  // the argument is an array [] of words or phrases
+  var i = 0;
+  i = Math.floor(Math.random() * myData.length);
+  return(myData[i]);
+}
