@@ -10,6 +10,7 @@ var handlers = {
   },
 
   'MostPopularSportIntent': function () {
+    //raccolgo nella variabile worldSport lo slot sport pronunciato dall'utente
     var worldSport = this.event.request.intent.slots.sport.value;
     if(worldSport === "soccer"){
       this.emit(:tell,"Correct! Soccer is the world's most popular sport.");
