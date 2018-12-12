@@ -9,6 +9,9 @@ var handlers = {
 		//Create speech output. This is what Alexa will speak back when the user says "Ask code academy to say hello"
       this.response.speak("Hello, Codecademy");
       this.emit(":responseReady");
+	 
+	//un modo equivalente di far pronunciare una stringa a Alexa è il seguente
+	  this.emit(':tell','Hello, Codecademy');
    },
   //Our skill will receive a LaunchRequest when the user invokes the skill with the invocation name, but does not provide any command mapping to an intent. For example, "Open code academy"
   "LaunchRequest": function () {
