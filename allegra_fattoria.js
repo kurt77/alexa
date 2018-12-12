@@ -146,6 +146,7 @@ var handlers = {
 
 // Test my {language} knowledge
 //verifico che ci siano delle domande rimanenti. In caso positivo genera un altra domanda
+//nota: devo passare gli attributes alla funzione per il questionCounter?
 var AskQuestion = function() {
   //var language = attributes['language'];
   //this.attributes['questionCounter'] = 0;
