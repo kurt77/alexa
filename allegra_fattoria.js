@@ -89,8 +89,8 @@ var handlers = {
   
   //intent invocato quando l'utente dice sono pronto (oppure si, verificare le utterances)
   'readyIntent': function(){
-    this.response.speak('Va bene, indovina questo verso ' + AskQuestion()).listen();
-
+    this.response.speak('Va bene, indovina questo verso ' + AskQuestion(this.attributes)).listen(AskQuestion(this.attributes));
+    //AskQuestion(this.attributes)).listen(AskQuestion(this.attributes));
     this.emit(':responseReady');
     
    }, 
