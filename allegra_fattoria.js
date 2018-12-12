@@ -58,7 +58,7 @@ var handlers = {
     
     //esempio di listen con reprompt
     this.response
-        .listen('Benvenuto a allegra fattoria. Farò il verso di un animale e tu dovrai indovinare quale animale è. Sei pronto?').speak(
+        .speak('Benvenuto a allegra fattoria. Farò il verso di un animale e tu dovrai indovinare quale animale è. Sei pronto?').listen(
         'Sei pronto a indovinare un animale dal verso?');
     this.emit(':responseReady');
   },
