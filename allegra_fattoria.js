@@ -96,7 +96,6 @@ var handlers = {
    } 
   
   
-  
   // User gives an answer
   // verifico la risposta dell utente
   'AnswerIntent': function() {
@@ -134,13 +133,13 @@ var handlers = {
 
   // Stop
   'AMAZON.StopIntent': function() {
-    this.response.speak('Ok, let\'s play again soon.');
+    this.response.speak('Ok, spero di giocare ancora insieme presto');
     this.emit(':responseReady');
   },
 
   // Cancel
   'AMAZON.CancelIntent': function() {
-    this.response.speak('Ok, let\'s play again soon.');
+    this.response.speak('Ok, spero di giocare ancora insieme presto');
     this.emit(':responseReady');
   }
 
