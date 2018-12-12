@@ -31,7 +31,7 @@ exports.handler = function(event, context, callback) {
   // Set up the Alexa object
 	var alexa = Alexa.handler(event,context);
   
-  // Register Handlers
+  // Register Handlers (vengono registrati tutti gli intent)
   alexa.registerHandlers(handlers);
 
   // Start our Alexa code
