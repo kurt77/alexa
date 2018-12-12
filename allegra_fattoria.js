@@ -100,28 +100,31 @@ var handlers = {
   // User gives an answer
   // verifico la risposta dell utente
   'AnswerIntent': function() {
+    //verificare che il nome dello slot corrisponda a quello definito su interaction model
     var userAnswer = this.event.request.intent.slots.answer.value;
-    var language = this.attributes['language'];
-    var languageAnswer = language + 'Answer';
-    var currentFlashcardIndex = this.attributes['currentFlashcardIndex'];
-    var correctAnswer = flashcardsDictionary[currentFlashcardIndex][languageAnswer];
+    //var language = this.attributes['language'];
+    //var languageAnswer = language + 'Answer';
+    //var currentFlashcardIndex = this.attributes['currentFlashcardIndex'];
+    var randomIndex = this.attributes['randomIndex'];
+    var correctAnswer = flashcardsDictionary[randomIndex]['animale'];
 
     if (userAnswer === correctAnswer){
       this.attributes['numberCorrect']++;
       var numberCorrect = this.attributes['numberCorrect'];
-      this.attributes['currentFlashcardIndex']++;
+      //this.attributes['currentFlashcardIndex']++;
+      this.attributes['questionCounter']++;
+      //vedi se serve passare gli attributi a AskQuestion
       this.response
-        .speak('Nice job! The correct answer is ' + correctAnswer + '. You ' +
-          'have gotten ' + numberCorrect + ' out of ' + DECK_LENGTH + ' ' +
-          language + ' questions correct. Here is your next question. ' + AskQuestion(this.attributes))
+        .speak('Ottimo! La risposta corretta è ' + correctAnswer + '. Hai ' +
+          'dato ' + numberCorrect + ' su ' + DECK_LENGTH + ' questions correct. Here is your next question. ' + AskQuestion(this.attributes))
         .listen(AskQuestion(this.attributes));
     } else {
       var numberCorrect = this.attributes['numberCorrect'];
-      this.attributes['currentFlashcardIndex']++;
+      //this.attributes['currentFlashcardIndex']++;
+      this.attributes['questionCounter']++;
       this.response
-        .speak('Sorry, the correct answer is ' + correctAnswer + '. You ' +
-          'have gotten ' + numberCorrect + ' out of ' + DECK_LENGTH + ' ' +
-          language + ' questions correct. Here is your next question. ' + 
+        .speak('Mi dispiace, la risposta corretta è ' + correctAnswer + '. Tu ' +
+          'hai ' + numberCorrect + ' su ' + DECK_LENGTH +  ' risposte corrette. Eccoti la prossima domanda. ' + 
           AskQuestion(this.attributes))
         .listen(AskQuestion(this.attributes));
     }
@@ -147,7 +150,7 @@ var handlers = {
 // Test my {language} knowledge
 //verifico che ci siano delle domande rimanenti. In caso positivo genera un altra domanda
 //nota: devo passare gli attributes alla funzione per il questionCounter?
-var AskQuestion = function() {
+var AskQuestion = function(attributes) {
   //var language = attributes['language'];
   //this.attributes['questionCounter'] = 0;
   //this.attributes['randomIndex'] = 0;
