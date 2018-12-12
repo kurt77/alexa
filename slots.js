@@ -9,6 +9,7 @@ var handlers = {
   },
 
   'LanguageIntent': function () {
+    //vado a catturare lo slot language pronunciato dall'utente
     var myLanguage = this.event.request.intent.slots.language.value;
     if (myLanguage == "python") {
         this.response.speak("Correct! Python is the most popular language.");
