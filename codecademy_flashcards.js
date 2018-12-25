@@ -1,3 +1,8 @@
+/* MEMO: assegnare alla funzione Lambda DynamoDBFullAccess role
+
+*/
+
+
 'use strict';
 
 var Alexa = require('alexa-sdk');
@@ -28,6 +33,7 @@ var handlers = {
 
   // Open Codecademy Flashcards
   'LaunchRequest': function() {
+    //verifico se l'utente ha gia usato la skill
     if (Object.keys(this.attributes).length === 0) {
       this.attributes.flashcards = {
         'currentLanguage': '',
@@ -129,6 +135,7 @@ var handlers = {
   },
 
   // Save state
+  //salvataggio esplicito della sessione su DB
   'SessionEndedRequest': function() {
     console.log('session ended!');
     this.emit(':saveState', true);
