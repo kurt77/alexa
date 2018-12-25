@@ -59,6 +59,7 @@ var handlers = {
         .listen('Which language would you like to practice?'); 
       
     } else { 
+      //carico dal DB i valori salvati
       var currentLanguage = this.attributes.flashcards.currentLanguage; 
       var numberCorrect = this.attributes.flashcards.languages[currentLanguage].numberCorrect; 
       var currentFlashcardIndex = this.attributes.flashcards.languages[currentLanguage].currentFlashcardIndex;
@@ -161,8 +162,8 @@ var AskQuestion = function(attributes) {
 };
 
 exports.handler = function(event, context, callback){
-  //creo la tabella su dynamoDB - da mettere come prima istruzione
   var alexa = Alexa.handler(event, context, callback);
+  //creo la tabella su dynamoDB - da mettere come prima istruzione
   alexa.dynamoDBTableName = 'CodecademyFlashcards';
   alexa.registerHandlers(handlers);
   alexa.execute();
