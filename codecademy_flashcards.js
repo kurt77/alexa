@@ -65,6 +65,7 @@ var handlers = {
         .listen('Which language would you like to practice?');
 
     }
+    //NOTA: salva i session attributes su DB all'uscita dell'intent
     this.emit(':responseReady');
   },
 
@@ -153,6 +154,7 @@ var AskQuestion = function(attributes) {
 };
 
 exports.handler = function(event, context, callback){
+  //creo la tabella su dynamoDB - da mettere come prima istruzione
   var alexa = Alexa.handler(event, context, callback);
   alexa.dynamoDBTableName = 'CodecademyFlashcards';
   alexa.registerHandlers(handlers);
